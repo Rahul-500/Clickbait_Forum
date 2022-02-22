@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <title>Clickbait Forum</title>
+    <style>
+        .btnclr{
+            font-style: italic;
+            font-weight: bold;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            border: 4px solid rgb(40, 40, 228);
+        }
+    </style>
 </head>
 
 <body>
@@ -49,48 +57,43 @@
     </nav>
     <h2 class="text-primary container my-5">Get in Touch</h2>
     <div class="container my-5">
-        <form>
+        <form method="post" name="google-sheet">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Good Name</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name">
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="Name" placeholder="name">
                 <br>
                 <label for="exampleFormControlInput1">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <input type="email" class="form-control" id="exampleFormControlInput1" name="Email" placeholder="name@example.com">
+                <br>
+                <label for="exampleFormControlInput1">Phone No.</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" name="Phone No." placeholder="Your Mobile No.">
             </div>
             <div class="font-weight-bold">
                 <label>Are you a Photographer.??</label>
                 <br>
-                <input type="checkbox">
-                <label>Yes</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="Are you a Photographer.??" placeholder="yes/no">
             </div>
             <br>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Leave us Message</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="Message" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Submit</button>
-            <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Sorry..!!</h5>
-                        </div>
-                        <div class="modal-body">
-                            <p>As the Website is still under Progress..</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div 
+            <span class="btnclr">
+                <input type="submit" value="Submit" name="submit">
+            </span>
         </form>
     </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx_eac-oTzIuru4fVi0qhpxynsF7cRexe6GHcFmxbMArbDgLjpM_wQuGlFEQXJm1YwY/exec'
+        const form = document.forms['google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
     <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">© 2021-2022 Clickbait Forum</p>
         <ul class="list-inline">
